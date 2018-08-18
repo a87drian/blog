@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-  before_action :set_article, only: [:show, :edit ]
+  before_action :set_article, only: [:show, :edit, :update, :destroy ]
 
   def new
     @article = Article.new
@@ -35,7 +35,11 @@ class ArticlesController < ApplicationController
 
     end
   end
+  def destroy
+    @article.destroy
+    redirect_to articles_url, notice: "Articulo Eliminado"
 
+  end
   private
   def article_params
     params.require(:article).permit(:title, :body)
