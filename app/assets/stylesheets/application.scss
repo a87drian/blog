@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$fondo: #ff5959;
+$color-a: #ff5959;
+$color-b: #ffad5a;
+$color-c: #4f9da6;
+$color-d: #1a0841;
+$colors : (
+  fondo:$fondo,
+  color-a:$color-a,
+  color-b:$color-b,
+  color-c:$color-c,
+  color-d:$color-d
+);
+body{
+  background-color: $fondo;
+
+}
+@each $color_name,$color in $colors{
+  .#{$color-name} {
+    background-color: $color !important;
+  }
+  .#{$color-name}-text{
+    color: $color !important;
+  }
+}

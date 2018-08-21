@@ -8,10 +8,14 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new()
-    if  @article.save
-      redirect_to @article, notice: "Articulo #{@article.title}Creado"
-    else
-      redirect_to :new
+    respond_to do |format|
+      if  @article.save
+          format.html {redirect_to @article, notice: "Articulo #{@article.title} Creado"}
+          format.json {render :show, status: :created, location: @article}
+      else
+          format.html {redirect_to :new}
+          format.json {render json: @article.errors, status: :unprocessable_entity}
+      end
     end
   end
 
